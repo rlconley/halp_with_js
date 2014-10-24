@@ -1,13 +1,7 @@
 Rails.application.routes.draw do
-  get 'notes/create'
 
-  get 'problems/new'
-
-  get 'problems/create'
-
-  get 'problems/index'
-
-  get 'problems/show'
+  resources :problems, :only => [ :new, :create, :index, :show ]
+  resources :notes, :only => [ :create ]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
