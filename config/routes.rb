@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'notes/create'
+
   get 'problems/new'
 
   get 'problems/create'
