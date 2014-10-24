@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  problem: two
+  text: woof
+
+two:
+  user: two
+  problem: two
+  text: meow

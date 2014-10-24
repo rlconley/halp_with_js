@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  description: I can haz cheezburger?
+  tried: Mewling at table
+  resolved: false
+
+two:
+  user: two
+  description: Walk?
+  tried: Puppydog eyes
+  resolved: false
