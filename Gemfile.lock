@@ -54,6 +54,8 @@ GEM
     columnize (0.8.9)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
+    did_you_mean (0.7.0)
+      binding_of_caller
     docile (1.1.5)
     erubis (2.7.0)
     execjs (2.2.2)
@@ -178,6 +180,7 @@ DEPENDENCIES
   binding_of_caller
   bourbon
   coffee-rails (~> 4.0.0)
+  did_you_mean
   faker
   jbuilder (~> 2.0)
   jquery-rails

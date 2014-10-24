@@ -52,6 +52,8 @@ group :development, :test do
   gem 'pry-rails'
   gem "pry-byebug"
   gem 'shoulda'
+  gem 'did_you_mean'
+
 end
 
 gem 'simplecov', :require => false, :group => :test
