@@ -48,6 +48,7 @@ class ProblemsControllerTest < ActionController::TestCase
     setup { get :show, { id: problems(:one) } }
     should respond_with(:ok)
     should render_template('show')
+    should render_template(partial: 'comments/new')
   end
 
 end
