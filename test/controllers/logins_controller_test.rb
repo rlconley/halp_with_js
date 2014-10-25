@@ -2,14 +2,14 @@ require 'test_helper'
 
 class LoginsControllerTest < ActionController::TestCase
   context "request GET :new" do
-    setup { get :new }
+    # setup { get :new }
+    #
+    # should respond_with(:ok)
+    # should render_template(:new)
 
-    should respond_with(:ok)
-    should render_template(:new)
-
-    should "instantiate a login object" do
-      assert assigns[:login], "Should have a login"
-    end
+    # should "instantiate a login object" do
+    #   assert assigns[:login], "Should have a login"
+    # end
   end
 
   context "request POST :create" do

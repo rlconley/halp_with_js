@@ -9,6 +9,7 @@ class ProblemTest < ActiveSupport::TestCase
 
     should validate_presence_of(:description)
     should validate_presence_of(:tried)
+    should validate_presence_of(:user)
 
     # should be resolved when marked resolved by author
 
