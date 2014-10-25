@@ -1,4 +1,3 @@
-
 <% @page_title = "Signup" %>
 <div class="Complete_Form">
   <h1>Sign Up to Share Your Problems</h1>
@@ -9,11 +8,11 @@
       <p> Password Confirmation:</br> <%= f.password_field :password_confirmation%> </p>
       <%= f.button :Submit %>
   <% end %>
-  <!--<% if @user.errors.any? %>-->
-      <!--<ul class="Signup_Errors">-->
-        <!--<% for message_error in @user.errors.full_messages %>-->
-            <!--<li>* <%= message_error %></li>-->
-        <!--<% end %>-->
-      <!--</ul>-->
-  <!--<% end %>-->
+  <% if @user.errors.any? %>
+      <ul class="Signup_Errors">
+      <% for message_error in @user.errors.full_messages %>
+          <li>* <%= message_error %></li>
+          <% end %>
+      </ul>
+      <% end %>
 </div>
