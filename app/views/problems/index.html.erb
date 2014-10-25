@@ -1,2 +1,17 @@
-<h1>Problems#index</h1>
-<p>Find me in app/views/problems/index.html.erb</p>
+<h2>HALP</h2>
+
+<h3><%= link_to "Get HALP", new_problem_path %></h3>
+
+<h3>So many problems</h3>
+<% @sorted_problems = @problems.sort_by(&:created_at) %>
+<% @sorted_problems.each do |p| %>
+  <% unless p.resolved %>
+    <strong><%= truncate(p.description, length: 50, omission: '...?') %></strong>
+    <%= link_to "HALP", problem_path(p.id) %>
+    <br>
+    Asked by <%= p.user.name %>
+    on <%= p.created_at.to_formatted_s(format = :short) %>
+    <br>
+    <br>
+  <% end %>
+<% end %>
