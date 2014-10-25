@@ -3,9 +3,11 @@ Rails.application.routes.draw do
   root 'problems#index'
 
   resources :users, :only => [ :create, :new ]
-  resource :logins, :only => [ :new, :create, :destroy ]
+  resource :login, :only => [ :new, :create, :destroy ]
   resources :problems, :only => [ :new, :create, :index, :show ]
   resources :notes, :only => [ :create ]
+
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
