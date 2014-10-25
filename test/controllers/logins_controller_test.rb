@@ -1,6 +1,7 @@
 require 'test_helper'
 
 class LoginsControllerTest < ActionController::TestCase
+
   context "GET :new" do
     setup { get :new }
 
@@ -8,6 +9,7 @@ class LoginsControllerTest < ActionController::TestCase
     should render_template(:new)
 
     end
+
 
   context "POST :create" do
     setup do
