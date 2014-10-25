@@ -1,2 +1,12 @@
-<h1>Problems#index</h1>
-<p>Find me in app/views/problems/index.html.erb</p>
+<h2>HALP</h2>
+
+<h3>So many problems</h3>
+<% @sorted_problems = @problems.sort_by(&:created_at) %>
+<% @sorted_problems.each do |p| %>
+  <% unless p.resolved %>
+    <%= p.user.name %>:
+    <%= link_to truncate(p.description, length: 50, omission: '...?'), problem_path(p.id) %>
+    Asked <%= p.created_at.to_formatted_s(format = :short) %>
+    <br>
+  <% end %>
+<% end %>
