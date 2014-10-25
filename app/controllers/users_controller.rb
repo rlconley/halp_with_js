@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:current_user_id] = @user.id
-      redirect_to root_path, success: "Thanks for registering!"
+      redirect_to root_path, notice: "Thanks for registering!"
 
     else
     render :new
@@ -18,6 +18,10 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  end
+
+  def authenticate
+
   end
 
 end

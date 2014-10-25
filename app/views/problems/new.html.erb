@@ -2,6 +2,6 @@
 <%= form_for @problem do |f| %>
   <%= f.text_area :description, rows: 5, cols: 40, placeholder: "What's wrong?" %></p>
   <%= f.text_area :tried, rows: 5, cols: 40, placeholder: "What have you tried?" %></p>
-  <%#= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.button :Submit %>
 <% end %>
