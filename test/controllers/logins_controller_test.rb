@@ -23,7 +23,7 @@ class LoginsControllerTest < ActionController::TestCase
   context "with invalid login info" do
     setup { post :create, {email: @user.email, password: ""}}
     should "re-render the form" do
-      assert_redirected_to logins_new_path
+      assert_template :new
     end
   end
 

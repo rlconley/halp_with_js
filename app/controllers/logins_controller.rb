@@ -8,7 +8,8 @@ class LoginsController < ApplicationController
       session[:current_user_id] = @user.id
       redirect_to root_path, notice: "Successfully logged in."
     else
-      redirect_to logins_new_path, notice: "User name and/or password is incorrect."
+      flash.now.alert = "Invalid email or password!"
+      render "new"
     end
   end
 
