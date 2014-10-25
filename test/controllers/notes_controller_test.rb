@@ -2,35 +2,35 @@ require 'test_helper'
 
 class NotesControllerTest < ActionController::TestCase
 
-  # context "request POST :create" do
-  #   setup { post :create }
-  #   should respond_with(:ok)
-  #
-  #   context "with invalid info" do
-  #     setup { post :create, { note: { user_id: users(:one).id, problem_id: problems(:two), text: "" } } }
-  #     should render_template('/problems/index')
-  #
-  #     # should "instantiate an invalid note" do
-  #     #   assert assigns[:note].invalid?
-  #     # end
-  #     ## assigns[:note] returns nil in this case, which you can't call .invalid? on
-  #     ## but this is what's used in Clinton's QuestionBox test, so I'm not sure where the issue is
-  #
-  #     should "not save a note" do
-  #     refute assigns[:note]
-  #     end
-  #   end
-  #
-  #   context "with valid info" do
-  #     setup { post :create, { note: { user_id: users(:one).id, problem_id: problems(:two), text: "asdf" } } }
-  #     should render_template('problems/show/')
-  #
-  #     should "save a note" do
-  #       assert assigns[:note]
-  #       assert assigns[:note].persisted?
-  #     end
-  #   end
-  #
-  # end
+  setup do
+    @user = users(:one)
+    @problem = problems(:two)
+    @note = notes(:one)
+  end
+
+  context "request POST :create" do
+
+    context "with invalid info" do
+      setup { post :create, { note: { user_id: @user.id, problem_id: @problem.id, text: "" } } }
+      should "redirect to problem's show view" do
+      assert_redirected_to problem_path(@problem)
+      end
+      should "instantiate an invalid note" do
+        assert assigns[:note].invalid?
+      end
+  end
+
+    context "with valid info" do
+      setup { post :create, { note: { user_id: @user.id, problem_id: @problem.id, text: "asdf" } } }
+      should "redirect to problem's show view" do
+        assert_redirected_to problem_path(@problem)
+      end
+      should "save a note" do
+        assert assigns[:note]
+        assert assigns[:note].persisted?
+      end
+    end
+
+  end
 
 end

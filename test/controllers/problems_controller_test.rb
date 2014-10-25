@@ -15,7 +15,7 @@ class ProblemsControllerTest < ActionController::TestCase
 
   context "request POST :create" do
     context "with invalid problem info" do
-      setup {post :create, { problem: { user_id: @user.id, description: @problem.description, tried: "" } } }
+    setup {post :create, { problem: { user_id: @user.id, description: @problem.description, tried: "" } } }
       should "not save a problem" do
         assert assigns[:problem].invalid?
       end
