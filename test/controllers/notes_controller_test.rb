@@ -7,7 +7,7 @@ class NotesControllerTest < ActionController::TestCase
     should respond_with(:ok)
 
     context "with invalid info" do
-      setup { post :create, { user_id: users(:one).id, problem_id: problems(:two), text: "" } }
+      setup { post :create, { note: { user_id: users(:one).id, problem_id: problems(:two), text: "" } } }
       should render_template('/problems/index')
 
       # should "instantiate an invalid note" do
@@ -22,7 +22,7 @@ class NotesControllerTest < ActionController::TestCase
     end
 
     context "with valid info" do
-      setup { post :create, { user_id: users(:one).id, problem_id: problems(:two), text: "asdf" } }
+      setup { post :create, { note: { user_id: users(:one).id, problem_id: problems(:two), text: "asdf" } } }
       should render_template('problems/show/')
 
       should "save a note" do
@@ -30,5 +30,7 @@ class NotesControllerTest < ActionController::TestCase
         assert assigns[:note].persisted?
       end
     end
+
   end
+
 end

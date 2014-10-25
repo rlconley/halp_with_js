@@ -1,17 +1,10 @@
 Rails.application.routes.draw do
 
+  resources :users, :only => [ :create, :new ]
+  resource :logins, :only => [ :new, :create, :destroy ]
   resources :problems, :only => [ :new, :create, :index, :show ]
   resources :notes, :only => [ :create ]
 
-  get 'users/create'
-
-  get 'users/new'
-
-  get 'logins/new'
-
-  get 'logins/create'
-
-  get 'logins/destroy'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
