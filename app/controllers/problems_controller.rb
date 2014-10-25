@@ -20,7 +20,7 @@ class ProblemsController < ApplicationController
   end
 
   def show
-    # @notes = Note.find(params[:id])
+    @note = Note.new
   end
 
   private

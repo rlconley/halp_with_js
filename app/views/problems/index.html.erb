@@ -1,5 +1,7 @@
 <h2>HALP</h2>
 
+<h3><%= link_to "Get HALP", new_problem_path %></h3>
+
 <h3>So many problems</h3>
 <% @sorted_problems = @problems.sort_by(&:created_at) %>
 <% @sorted_problems.each do |p| %>
