@@ -1,2 +1,22 @@
-<h1>Problems#show</h1>
-<p>Find me in app/views/problems/show.html.erb</p>
+<h3>Halp <%= @problem.user.name %></h3>
+<h4>Asked on <%= @problem.created_at.to_formatted_s(format = :short) %></h4>
+
+<h3>Description</h3>
+<p><%= @problem.description %></p>
+
+<h3>What <%= @problem.user.name %> has tried already</h3>
+<%= @problem.tried %>
+<br>
+<br>
+
+<h3>Notes</h3>
+<% @sorted_notes = @problem.notes.sort_by(&:created_at) %>
+<% @sorted_notes.each do |n| %>
+  <%= n.text %><br>
+  <%= n.user.name %> at <%= n.created_at.to_formatted_s(format = :short) %>
+  <br>
+  <br>
+<% end %>
+
+<h3>Add a Note</h3>
+<%= render 'notes/new' %>
