@@ -1,6 +1,6 @@
 <%= form_for @note do |f| %>
   <%= f.text_area :text, rows: 5, cols: 40, placeholder: "Add a note" %></p>
-  <%#= f.hidden_field :user_id, value: current_user.id %>
+  <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :problem_id, value: @problem.id %>
   <%= f.button :Submit %>
 <% end %>
