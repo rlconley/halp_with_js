@@ -1,5 +1,5 @@
 class ProblemsController < ApplicationController
-  before_action :set_problem, only: [:show]
+  before_action :set_problem, only: [:show, :resolve]
 
   def new
     @problem = Problem.new

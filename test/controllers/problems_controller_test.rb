@@ -8,14 +8,14 @@ class ProblemsControllerTest < ActionController::TestCase
   end
 
   context "request GET :new" do
-    setup { get :new }
+    setup { get :new, nil, {current_user_id: @user.id}}
     should respond_with(:ok)
     should render_template('new')
   end
 
   context "request POST :create" do
     context "with invalid problem info" do
-    setup {post :create, { problem: { user_id: @user.id, description: @problem.description, tried: "" } } }
+    setup {post :create, { problem: { user_id: @user.id, description: @problem.description, tried: "" } }, {current_user_id: @user.id}  }
       should "not save a problem" do
         assert assigns[:problem].invalid?
       end
@@ -23,7 +23,7 @@ class ProblemsControllerTest < ActionController::TestCase
     end
 
     context "with valid problem info" do
-      setup {post :create, { problem: { user_id: @user.id, description: @problem.description, tried: @problem.tried } } }
+      setup {post :create, { problem: { user_id: @user.id, description: @problem.description, tried: @problem.tried } }, {current_user_id: @user.id}  }
       should "save the problem" do
         assert assigns[:problem]
         assert assigns[:problem].persisted?
@@ -35,16 +35,26 @@ class ProblemsControllerTest < ActionController::TestCase
   end
 
   context "request GET :index" do
-    setup { get :index }
+    setup { get :index, nil, {current_user_id: @user.id}}
     should respond_with(:ok)
     should render_template('index')
   end
 
   context "request GET :show" do
-    setup { get :show, { id: problems(:one) } }
+    setup { get :show, { id: problems(:one) }, {current_user_id: @user.id} }
     should respond_with(:ok)
     should render_template('show')
     # should render_template(partial: 'notes/new')
   end
 
-end
+  context "request PATCH :resolve" do
+    setup { patch :resolve, { id: @problem}, {current_user_id: @user.id} }
+    should respond_with(:ok)
+    should "resolve the problem" do
+      assert @problem.resolved
+    end
+    should "redirect to problems page" do
+      assert_redirected_to root_path
+    end
+  end
+ end
