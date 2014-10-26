@@ -9,3 +9,8 @@ two:
   user: two
   problem: two
   text: meow
+
+three:
+  user: one
+  problem: one
+  text: bark

@@ -23,7 +23,10 @@ class ProblemsControllerTest < ActionController::TestCase
     end
 
     context "with valid problem info" do
-      setup {post :create, { problem: { user_id: @user.id, description: @problem.description, tried: @problem.tried } }, {current_user_id: @user.id}  }
+      setup do
+        ActionMailer::Base.deliveries.clear
+        post :create, { problem: { user_id: @user.id, description: @problem.description, tried: @problem.tried } }, {current_user_id: @user.id}
+      end
       should "save the problem" do
         assert assigns[:problem]
         assert assigns[:problem].persisted?

@@ -12,6 +12,6 @@ class UserMailer < ActionMailer::Base
     @user = user
     @note = note
     @url = "https://secret-cliffs-4141.herokuapp.com/problems/#{@note.problem_id}"
-    mail to: @user.email, subject: "Note added on your problem"
+    mail to: @note.problem.user.email, subject: "Note added on your problem"
   end
 end

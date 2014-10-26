@@ -3,8 +3,10 @@ class NotesController < ApplicationController
     @user = current_user
     @note = Note.new(note_params)
     if @note.save
+      unless @user == @note.problem.user
+        UserMailer.note_added(@user, @note).deliver
+      end
       redirect_to problem_path(@note.problem_id), notice: "Note saved successfully"
-      UserMailer.note_added(@user, @note).deliver
     else
       redirect_to problem_path(@note.problem_id), notice: "Invalid note input"
     end
