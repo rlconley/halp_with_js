@@ -36,7 +36,7 @@ class ProblemsControllerTest < ActionController::TestCase
       #asserts any email was sent, not specifically problems_posted
       end
     end
-  end
+
   context "request GET :index" do
     setup { get :index, nil, {current_user_id: @user.id}}
     should respond_with(:ok)
@@ -60,3 +60,4 @@ class ProblemsControllerTest < ActionController::TestCase
     end
   end
  end
+end
