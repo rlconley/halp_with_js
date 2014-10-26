@@ -1,9 +1,10 @@
 class NotesController < ApplicationController
   def create
-    # @problem = Problem.find(params[:problem_id])
+    @user = current_user
     @note = Note.new(note_params)
     if @note.save
       redirect_to problem_path(@note.problem_id), notice: "Note saved successfully"
+      UserMailer.note_added(@user, @note).deliver
     else
       redirect_to problem_path(@note.problem_id), notice: "Invalid note input"
     end

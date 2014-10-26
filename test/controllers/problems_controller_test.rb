@@ -31,9 +31,9 @@ class ProblemsControllerTest < ActionController::TestCase
       should "redirect to problem's show view" do
         assert_redirected_to problem_path(assigns(:problem))
       end
-      should "send problems_posted email" do
-      assert_not_empty ActionMailer::Base.deliveries
-      #asserts any email was sent, not specifically problems_posted
+      should "send problem_posted email" do
+        email = ActionMailer::Base.deliveries.last
+        assert_equal "You've got a problem", email.subject
       end
     end
 

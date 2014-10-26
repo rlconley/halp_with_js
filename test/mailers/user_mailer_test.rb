@@ -15,8 +15,8 @@ end
   context "note added email" do
     should "contain correct subject and addresses" do
       user = users(:one)
-      problem = problems(:one)
-      mail = UserMailer.note_added(user, problem)
+      note = notes(:one)
+      mail = UserMailer.note_added(user, note)
       assert_equal "Note added on your problem", mail.subject
       assert_equal [user.email], mail.to
       assert_equal ["noreply@halp.com"], mail.from
