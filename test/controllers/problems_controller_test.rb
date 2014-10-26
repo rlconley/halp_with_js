@@ -34,7 +34,6 @@ class ProblemsControllerTest < ActionController::TestCase
       should "send problems_posted email" do
       assert_not_empty ActionMailer::Base.deliveries
       #asserts any email was sent, not specifically problems_posted
-      # binding.pry
       end
     end
 
