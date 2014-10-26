@@ -4,8 +4,7 @@ class UserMailer < ActionMailer::Base
   def problem_posted (user, problem)
     @user = user
     @problem = problem
-    @url = 'https://secret-cliffs-4141.herokuapp.com/problems'
+    @url = "https://secret-cliffs-4141.herokuapp.com/problems/#{@problem.id}"
     mail to: @user.email, subject: "You've got a problem"
   end
-
 end

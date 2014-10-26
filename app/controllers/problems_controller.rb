@@ -1,6 +1,5 @@
 class ProblemsController < ApplicationController
   before_action :set_problem, only: [:show, :resolve]
-  # after_create: :send_email, is this necessary?
 
   def new
     @problem = Problem.new
@@ -8,9 +7,10 @@ class ProblemsController < ApplicationController
 
   def create
     @problem = Problem.new(problem_params)
+    @user = current_user
     if @problem.save
       redirect_to problem_path(@problem.id), notice: "Problem saved successfully"
-      # UserMailer.problem_posted(@user).deliver
+      UserMailer.problem_posted(@user, @problem).deliver
     else
       render :new, notice: "Invalid problem input"
     end
