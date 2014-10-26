@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class UserMailerTest < ActionMailer::TestCase
-  context
+  context "should send problem posted email when problem posted"
     should "send a problem posted" do
       user = users(:one)
       mail = UserMailer.problem_posted(user, "You got a problem")

@@ -31,9 +31,12 @@ class ProblemsControllerTest < ActionController::TestCase
       should "redirect to problem's show view" do
         assert_redirected_to problem_path(assigns(:problem))
       end
+      should "send problems_posted email" do
+      assert_not_empty ActionMailer::Base.deliveries
+      #asserts any email was sent, not specifically problems_posted
+      end
     end
   end
-
   context "request GET :index" do
     setup { get :index, nil, {current_user_id: @user.id}}
     should respond_with(:ok)
