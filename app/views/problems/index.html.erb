@@ -1,14 +1,10 @@
-<h1>HALP</h1>
-
-
 <%if logged_in?%>
     <h3><%= link_to "Get HALP", new_problem_path %></h3>
 <%else%>
-    <h3><%= link_to "Existing Users login to get HALP", new_login_path %></h3>
-    <h3><%= link_to "New Users register to get HALP", new_user_path %></h3>
+    <h3><%= link_to "Log in", new_login_path %> or <%= link_to "Register", new_user_path %> to get HALP!</h3>
 <%end%>
 
-    <h3>So many problems</h3>
+    <h3>So many problems...</h3>
 <% @sorted_problems = @problems.sort_by(&:created_at) %>
 <% @sorted_problems.each do |p| %>
   <% unless p.resolved %>
@@ -21,7 +17,4 @@
     <br>
   <% end %>
 <% end %>
-
-<p><%= link_to "Logout", login_path, method: :delete %></p>
-
 

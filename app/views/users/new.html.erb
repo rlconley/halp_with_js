@@ -1,12 +1,12 @@
 <% @page_title = "Signup" %>
 <div class="Complete_Form">
-  <h1>Sign Up to Share Your Problems</h1>
+  <h2>Sign up to share your problems on HALP</h2>
   <%= form_for(:user, :url => {:controller => 'users', :action => 'create'}) do |f| %>
-      <p> Name:</br> <%= f.text_field :name%> </p>
-      <p> Email:</br> <%= f.text_field :email%> </p>
-      <p> Password:</br> <%= f.password_field :password%></p>
-      <p> Password Confirmation:</br> <%= f.password_field :password_confirmation%> </p>
-      <%= f.button :Submit %>
+      <%= f.text_field :name, placeholder: 'Name' %><br>
+      <%= f.text_field :email, placeholder: 'Email' %><br>
+      <%= f.password_field :password, placeholder: 'Password' %><br>
+      <%= f.password_field :password_confirmation, placeholder: 'Confirm Password' %><br>
+      <%= f.button 'Sign up' %>
   <% end %>
   <% if @user.errors.any? %>
       <ul class="Signup_Errors">

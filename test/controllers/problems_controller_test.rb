@@ -23,7 +23,10 @@ class ProblemsControllerTest < ActionController::TestCase
     end
 
     context "with valid problem info" do
-      setup {post :create, { problem: { user_id: @user.id, description: @problem.description, tried: @problem.tried } }, {current_user_id: @user.id}  }
+      setup do
+        ActionMailer::Base.deliveries.clear
+        post :create, { problem: { user_id: @user.id, description: @problem.description, tried: @problem.tried } }, {current_user_id: @user.id}
+      end
       should "save the problem" do
         assert assigns[:problem]
         assert assigns[:problem].persisted?
@@ -31,10 +34,9 @@ class ProblemsControllerTest < ActionController::TestCase
       should "redirect to problem's show view" do
         assert_redirected_to problem_path(assigns(:problem))
       end
-      should "send problems_posted email" do
-      assert_not_empty ActionMailer::Base.deliveries
-      #asserts any email was sent, not specifically problems_posted
-      # binding.pry
+      should "send problem_posted email" do
+        email = ActionMailer::Base.deliveries.last
+        assert_equal "You've got a problem", email.subject
       end
     end
 
@@ -48,7 +50,7 @@ class ProblemsControllerTest < ActionController::TestCase
     setup { get :show, { id: problems(:one) }, {current_user_id: @user.id} }
     should respond_with(:ok)
     should render_template('show')
-    # should render_template(partial: 'notes/new')
+    should render_template(partial: 'notes/_new')
   end
 
   context "request PATCH :resolve" do
