@@ -49,9 +49,8 @@ class ProblemsControllerTest < ActionController::TestCase
 
   context "request PATCH :resolve" do
     setup { patch :resolve, { id: @problem}, {current_user_id: @user.id} }
-    should respond_with(:ok)
     should "resolve the problem" do
-      assert @problem.resolved
+      assert assigns[:problem].resolved
     end
     should "redirect to problems page" do
       assert_redirected_to root_path

@@ -30,7 +30,8 @@ end
         description: ["How do I even ", "Why can't I " ].sample + Faker::Company.bs + "?",
         tried: "I tried " + Faker::Hacker.verb + "ing the " + Faker::Hacker.adjective + " " + Faker::Hacker.noun + ", like 17 times.",
         user_id: u.id,
-        created_at: Faker::Time.between(u.created_at, Time.now, :all)
+        created_at: Faker::Time.between(u.created_at, Time.now, :all),
+        resolved: [true, false].sample
     )
     @problems << problem
   end
@@ -47,12 +48,3 @@ end
     )
   end
 end
-
-# 5.times do
-#   @problems.sample do |p|
-#     unless p.resolved
-#       p.update(resolved: true)
-#       p.save
-#     end
-#   end
-# end

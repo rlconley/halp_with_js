@@ -23,7 +23,10 @@ class ProblemsController < ApplicationController
   end
 
   def resolve
-
+    @problem.toggle(:resolved)
+    @problem.save
+    redirect_to root_path, notice: "Problem resolved!"
+    # props to Kheang's QuestionBox code
   end
 
   private
