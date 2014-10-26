@@ -7,8 +7,10 @@ class ProblemsController < ApplicationController
 
   def create
     @problem = Problem.new(problem_params)
+    @user = current_user
     if @problem.save
       redirect_to problem_path(@problem.id), notice: "Problem saved successfully"
+      UserMailer.problem_posted(@user, @problem).deliver
     else
       render :new, notice: "Invalid problem input"
     end
