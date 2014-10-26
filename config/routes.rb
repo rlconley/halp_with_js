@@ -1,13 +1,13 @@
 Rails.application.routes.draw do
 
-  patch 'problems/:id' => 'problems#resolve'
   root 'problems#index'
 
   resources :users, :only => [ :create, :new ]
   resource :login, :only => [ :new, :create, :destroy ]
-  resources :problems, :only => [ :new, :create, :index, :show, :resolve]
+  resources :problems, :only => [ :new, :create, :index, :show ]
   resources :notes, :only => [ :create ]
 
+  patch 'problems/:id' => 'problems#resolve', as: 'resolve'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

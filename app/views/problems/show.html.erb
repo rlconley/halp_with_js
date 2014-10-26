@@ -9,6 +9,10 @@
 <br>
 <br>
 
+<% if @problem.user == current_user %>
+  <h3><%= link_to "Mark as Resolved", resolve_path, method: :patch  %></h3>
+  <% end %>
+
 <h3>Notes</h3>
 <% @sorted_notes = @problem.notes.sort_by(&:created_at) %>
 <% @sorted_notes.each do |n| %>
