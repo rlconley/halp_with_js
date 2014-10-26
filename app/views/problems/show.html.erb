@@ -18,5 +18,7 @@
   <br>
 <% end %>
 
-<h3>Add a Note</h3>
-<%= render 'notes/new' %>
+<%if logged_in?%>
+    <h3>Add a Note</h3>
+    <%= render 'notes/new' %>
+<%end%>

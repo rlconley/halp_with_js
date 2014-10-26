@@ -1,8 +1,7 @@
 class ProblemsController < ApplicationController
-  before_action :set_problem, only: [:show]
+  before_action :set_problem, only: [:show, :resolve]
 
   def new
-    # @user = current_user_id
     @problem = Problem.new
   end
 
@@ -21,6 +20,10 @@ class ProblemsController < ApplicationController
 
   def show
     @note = Note.new
+  end
+
+  def resolve
+
   end
 
   private

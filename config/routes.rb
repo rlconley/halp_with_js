@@ -1,12 +1,12 @@
 Rails.application.routes.draw do
 
+  patch 'problems/:id' => 'problems#resolve'
   root 'problems#index'
 
   resources :users, :only => [ :create, :new ]
   resource :login, :only => [ :new, :create, :destroy ]
-  resources :problems, :only => [ :new, :create, :index, :show ]
+  resources :problems, :only => [ :new, :create, :index, :show, :resolve]
   resources :notes, :only => [ :create ]
-
 
 
 
