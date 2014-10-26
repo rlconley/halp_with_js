@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "noreply@halp.com"
+  default from: "noreply@secret-cliffs-4141.herokuapp.com"
 
   def problem_posted (user, problem)
     @user = user
