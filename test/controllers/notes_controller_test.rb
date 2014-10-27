@@ -5,16 +5,21 @@ class NotesControllerTest < ActionController::TestCase
   setup do
     @user = users(:one)
     @user_two = users(:two)
+    @problem_one = problems(:one)
     @problem_two = problems(:two)
     @note = notes(:one)
-    @note_three = notes(:three)
-    @self_note = notes(:three)
   end
 
   context "request POST :create" do
 
     context "with invalid info" do
-      setup { post :create, { note: { user_id: @user.id, problem_id: @problem_two.id, text: "" } }, {current_user_id: @user.id} }
+      setup do
+        ActionMailer::Base.deliveries.clear
+        post :create, { note: { user_id: @user.id, problem_id: @problem_two.id, text: "" } }, {current_user_id: @user.id}
+      end
+      should "not send an email" do
+        assert_empty ActionMailer::Base.deliveries
+      end
       should "redirect to problem's show view" do
       assert_redirected_to problem_path(@problem_two)
       end
@@ -36,23 +41,12 @@ class NotesControllerTest < ActionController::TestCase
 
         setup do
           ActionMailer::Base.deliveries.clear
-          post :create, { note: { user_id: @user_two.id, problem_id: @problem_two.id, text: "asdf" } }, {current_user_id: @user_two.id}
-          # this note needs to be specified differently, because it's failing here but not on the server
+          post :create, { note: { user_id: @user.id, problem_id: @problem_one.id, text: "note to self" } },
+                        {current_user_id: @user.id}
         end
         should "not send an email" do
           assert_empty ActionMailer::Base.deliveries
         end
-
-        # ActionMailer::Base.deliveries.clear
-        # should "have test clear the deliveries array" do
-        #   assert_empty ActionMailer::Base.deliveries
-        # end
-
-        # should "not send an email" do
-        #   assert_no_difference 'ActionMailer::Base.deliveries.size' do
-        #     post :create, { note: { user_id: @user_two.id, problem_id: @problem_two.id, text: "asdf" } }, {current_user_id: @user_two.id}
-        #   end
-        # end
 
       end
       context "when a non-author adds a note" do
