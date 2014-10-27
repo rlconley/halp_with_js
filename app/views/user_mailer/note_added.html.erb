@@ -1,8 +1,8 @@
 <p>
-  Hello <%= @user.name %>,
+  Hello <%= @note.problem.user.name %>,
 </p>
 
 <p>
-  A note was added to your problem.
+ <%= @user %> added a note on your problem.
   You can view it <%=link_to "right here!", @url %>
 </p>
