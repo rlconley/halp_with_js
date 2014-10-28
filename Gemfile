@@ -44,6 +44,7 @@ gem 'bourbon'
 gem 'neat'
 gem 'kaminari'
 gem 'simple_form'
+gem 'capybara'
 
 group :development, :test do
   gem 'better_errors'
