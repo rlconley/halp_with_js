@@ -27,8 +27,19 @@ class ProblemsController < ApplicationController
   def resolve
     @problem.toggle(:resolved)
     @problem.save
-    redirect_to root_path, notice: "Problem resolved!"
-    # props to Kheang's QuestionBox code
+
+    respond_to do |format|
+     format.html do
+      if @problem.save
+        render 'problems/index', notice: "Problem resolved!"
+      end
+     end
+      format.js do
+        if @problem.save
+        render 'problems/resolve'
+        end
+      end
+    end
   end
 
   private

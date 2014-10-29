@@ -1,20 +1,12 @@
-<%if logged_in?%>
+<% if logged_in? %>
     <h3><%= link_to "Get HALP", new_problem_path %></h3>
-<%else%>
+<% else %>
     <h3><%= link_to "Log in", new_login_path %> or <%= link_to "Register", new_user_path %> to get HALP!</h3>
-<%end%>
-
-    <h3>So many problems...</h3>
-<% @sorted_problems = @problems.sort_by(&:created_at) %>
-<% @sorted_problems.each do |p| %>
-  <% unless p.resolved %>
-    <strong><%= truncate(p.description, length: 50, omission: '...?') %></strong>
-    <%= link_to "HALP", problem_path(p.id) %>
-    <br>
-    Asked by <%= p.user.name %>
-    on <%= p.created_at.to_formatted_s(format = :short) %>
-    <br>
-    <br>
-  <% end %>
 <% end %>
+
+<h3>So many problems...</h3>
+<% @sorted_problems = @problems.sort_by(&:created_at) %>
+<%= render @sorted_problems %>
+
+<br>
 

@@ -15,14 +15,10 @@
 
 <h3>Notes</h3>
 <% @sorted_notes = @problem.notes.sort_by(&:created_at) %>
-<% @sorted_notes.each do |n| %>
-  <%= n.text %><br>
-  <%= n.user.name %> at <%= n.created_at.to_formatted_s(format = :short) %>
-  <br>
-  <br>
-<% end %>
+<%= render @sorted_notes %>
 
 <%if logged_in?%>
     <h3>Add a Note</h3>
     <%= render 'notes/new' %>
 <%end%>
+

@@ -61,7 +61,5 @@ class NotesControllerTest < ActionController::TestCase
         end
       end
     end
-
   end
-
 end

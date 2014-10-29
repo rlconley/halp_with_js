@@ -45,6 +45,7 @@ gem 'neat'
 gem 'kaminari'
 gem 'simple_form'
 gem 'capybara'
+gem 'font-awesome-sass'
 
 group :development, :test do
   gem 'better_errors'

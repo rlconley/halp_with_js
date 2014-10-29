@@ -1,0 +1,13 @@
+<div id="<%=dom_id problem%>"><strong><%= truncate(problem.description, length: 50, omission: '...?') %></strong>
+  <%= link_to "HALP", problem_path(problem) %>
+  <br>
+  Asked by <%= problem.user.name %>
+  on <%= problem.created_at.to_formatted_s(format = :short) %>
+  <div class="resolution">
+    <% if problem.resolved %>
+        <h3>Resolved!</h3>
+        <br>
+    <% elsif problem.user == current_user %>
+        <h3><%= link_to "Mark as Resolved", resolve_path(problem), method: :patch, remote: true %></h3>
+    <% end %>
+  </div></div>
